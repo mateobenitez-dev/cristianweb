@@ -135,6 +135,7 @@ export function Intro() {
         onComplete: () => {
           try { localStorage.setItem(SEEN_KEY, "1"); } catch {}
           setDone(true);
+          requestAnimationFrame(() => window.dispatchEvent(new Event("cg:intro-done")));
         },
       });
       tl.to(enter, { autoAlpha: 0, duration: 0.3 }, 0)
