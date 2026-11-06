@@ -1,0 +1,17 @@
+INSERT INTO products (slug, type, name, short_desc, description, level, duration_weeks, days_per_week, price_cents, pdf_path, features, sort_order) VALUES
+('base-natural', 'rutina', 'Base Natural', 'Construí la técnica y el hábito con un full body progresivo.',
+ 'Programa de 12 semanas pensado para quien empieza o vuelve al gimnasio. Progresión lineal, técnica en básicos y guía de alimentación.',
+ 'principiante', 12, 3, 9900, 'private/rutinas/base-natural.pdf',
+ ARRAY['3 días por semana','Videos de técnica','Guía de nutrición inicial'], 1),
+('hipertrofia-torso-pierna', 'rutina', 'Hipertrofia Torso/Pierna', 'Volumen bien distribuido para ganar masa muscular limpia.',
+ 'Split torso/pierna con doble progresión y bloques de 4 semanas. Ideal para quien ya domina los básicos.',
+ 'intermedio', 16, 4, 19900, 'private/rutinas/hipertrofia-torso-pierna.pdf',
+ ARRAY['4 días por semana','Periodización por bloques','Planilla de seguimiento'], 2),
+('ppl-natural-pro', 'rutina', 'PPL Natural Pro', 'El sistema que usa Cristian en temporada fuera de competencia.',
+ 'Push/Pull/Legs de alta frecuencia con técnicas de intensidad, deload programado y ajustes de volumen por grupo muscular.',
+ 'avanzado', 20, 6, 40000, 'private/rutinas/ppl-natural-pro.pdf',
+ ARRAY['6 días por semana','Técnicas de intensidad','Protocolo de deload'], 3),
+('asesoria-mensual', 'asesoria', 'Asesoría Premium 1 a 1 · Mensual', 'Acompañamiento continuo, como un PT presencial, pero online.',
+ 'Plan de entrenamiento y nutrición 100% personalizado, check-in semanal, corrección de técnica por video y chat directo.',
+ NULL, 4, NULL, 25000, NULL,
+ ARRAY['Check-in semanal','Ajustes de plan','Chat directo','Corrección por video'], 10);
