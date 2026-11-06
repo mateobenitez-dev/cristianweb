@@ -39,7 +39,7 @@ export function CoachingApplyForm() {
       <div>
         <p className="text-sm font-bold uppercase tracking-[.3em] text-gold">Paso 2 de 2</p>
         <h3 className="mt-2 text-3xl">Agendá tu llamada de evaluación</h3>
-        <p className="mt-2 text-neutral-400">20 minutos para conocer tu situación y ver si somos un buen match.</p>
+        <p className="mt-2 text-neutral-400">Elegí el día y horario que te quede cómodo.</p>
         {calUrl ? (
           <iframe src={calUrl} title="Agendar evaluación" className="mt-6 h-[700px] w-full rounded-xl border border-line bg-ink" />
         ) : (

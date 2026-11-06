@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LoopVideo } from "@/components/LoopVideo";
+import { Placeholder } from "@/components/Placeholder";
 import type { Metadata } from "next";
 import { PILLARS, STORY as TIMELINE } from "@/content/story";
 
@@ -17,10 +18,8 @@ export default function SobreMiPage() {
         <div>
           <p className="text-sm font-bold uppercase tracking-[.3em] text-gold">Mi historia</p>
           <h1 className="mt-2 text-5xl">Cristian Giudici</h1>
-          <p className="mt-6 text-lg text-neutral-300">
-            Culturista natural y personal trainer. Llegué a mi nivel actual con años de constancia, errores y aprendizaje,
-            y hoy uso todo eso para que vos llegues más rápido y sin lesionarte.
-          </p>
+          <p className="mt-2 text-neutral-400">Fisicoculturista natural · Entrenador online</p>
+          <div className="mt-6"><Placeholder /></div>
         </div>
       </section>
 
@@ -29,10 +28,11 @@ export default function SobreMiPage() {
           <h2 className="text-4xl">El recorrido</h2>
           <ol className="mt-10 space-y-8 border-l border-brand/60 pl-6">
             {TIMELINE.map((t) => (
-              <li key={t.year} className="relative">
+              <li key={t.title} className="relative">
                 <span className="absolute -left-[31px] top-1 h-3 w-3 rounded-full bg-brand" />
-                <p className="font-display text-2xl text-gold">{t.year}</p>
-                <p className="text-neutral-300"><b className="text-white">{t.title}.</b> {t.text}</p>
+                {t.year ? <p className="font-display text-2xl text-gold">{t.year}</p> : <Placeholder label="Poner año" />}
+                <p className="mt-1 text-neutral-300"><b className="text-white">{t.title}</b></p>
+                {t.text ? <p className="text-neutral-300">{t.text}</p> : <Placeholder className="mt-2" />}
               </li>
             ))}
           </ol>
@@ -41,7 +41,7 @@ export default function SobreMiPage() {
 
       <section className="container-x pt-16">
         <h2 className="text-4xl">En la tarima</h2>
-        <p className="mt-2 text-neutral-400">Culturismo natural testeado. UFA Winter.</p>
+        <p className="mt-2 text-neutral-400">UFA Winter</p>
         <div className="-mx-4 mt-8 flex snap-x gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0">
           {["escenario-frente-medallas", "escenario-grito", "escenario-perfil", "hero-medalla"].map((f) => (
             <div key={f} className="relative aspect-[3/4] w-48 shrink-0 snap-start overflow-hidden rounded-xl border border-line">
@@ -57,7 +57,7 @@ export default function SobreMiPage() {
           {PILLARS.map(([title, text]) => (
             <div key={title} className="rounded-2xl border border-line bg-surface p-6">
               <h3 className="text-xl text-gold">{title}</h3>
-              <p className="mt-2 text-neutral-400">{text}</p>
+              {text ? <p className="mt-2 text-neutral-400">{text}</p> : <div className="mt-3"><Placeholder /></div>}
             </div>
           ))}
         </div>

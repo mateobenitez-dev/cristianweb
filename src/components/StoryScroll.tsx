@@ -5,6 +5,7 @@ import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PILLARS, STORY } from "@/content/story";
+import { Placeholder } from "./Placeholder";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,16 +79,16 @@ export function StoryScroll() {
 
           <ol className="space-y-24 md:space-y-32">
             {STORY.map((s, i) => (
-              <li key={s.year} data-chapter className={`relative grid pl-12 md:grid-cols-2 md:pl-0`}>
+              <li key={s.title} data-chapter className={`relative grid pl-12 md:grid-cols-2 md:pl-0`}>
                 <span data-chapter-dot className="absolute left-[7px] top-2 h-4 w-4 rounded-full border-2 border-gold bg-ink md:left-1/2 md:-translate-x-1/2" />
                 <span data-chapter-year aria-hidden
                   className={`pointer-events-none absolute -top-10 select-none font-display text-[22vw] leading-none text-white/[.04] md:text-[11rem] right-0 ${i % 2 ? "md:left-0 md:right-auto" : ""}`}>
-                  {s.year}
+                  {s.year || "····"}
                 </span>
                 <div data-chapter-card className={`relative ${i % 2 ? "md:col-start-2 md:pl-16" : "md:pr-16 md:text-right"}`}>
-                  <p className="font-display text-2xl text-gold">{s.year}</p>
+                  {s.year ? <p className="font-display text-2xl text-gold">{s.year}</p> : <Placeholder label="Poner año" />}
                   <h3 className="mt-1 text-3xl sm:text-4xl">{s.title}</h3>
-                  <p className="mt-3 text-lg text-neutral-400">{s.text}</p>
+                  {s.text ? <p className="mt-3 text-lg text-neutral-400">{s.text}</p> : <div className="mt-3"><Placeholder /></div>}
                   {s.img && (
                     <div className={`relative mt-6 aspect-[4/5] w-44 overflow-hidden rounded-xl border border-line sm:w-52 ${i % 2 ? "" : "md:ml-auto"}`}>
                       <Image src={s.img} alt={s.title} fill sizes="208px" className="object-cover" />
@@ -105,7 +106,7 @@ export function StoryScroll() {
             {PILLARS.map(([t, d]) => (
               <div key={t} data-pillar className="rounded-2xl border border-line bg-surface p-6">
                 <h4 className="font-display text-xl uppercase text-gold">{t}</h4>
-                <p className="mt-2 text-neutral-400">{d}</p>
+                {d ? <p className="mt-2 text-neutral-400">{d}</p> : <div className="mt-3"><Placeholder /></div>}
               </div>
             ))}
           </div>

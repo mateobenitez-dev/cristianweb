@@ -3,6 +3,7 @@ import Link from "next/link";
 import { LoopVideo } from "@/components/LoopVideo";
 import type { Metadata } from "next";
 import { CoachingApplyForm } from "@/components/CoachingApplyForm";
+import { Placeholder } from "@/components/Placeholder";
 
 export const metadata: Metadata = {
   title: "Asesoría Premium 1 a 1",
@@ -10,15 +11,15 @@ export const metadata: Metadata = {
 };
 
 const INCLUDES = [
-  ["Plan 100% personalizado", "Entrenamiento y nutrición armados para tu cuerpo, tu agenda y tu objetivo."],
-  ["Check-in semanal", "Reportás peso, medidas, fotos y sensaciones. Yo analizo y ajusto."],
-  ["Corrección de técnica", "Mandás videos de tus series y te devuelvo correcciones puntuales."],
-  ["Chat directo conmigo", "Dudas en el súper, en el gym o de viaje: respondo yo, no un bot."],
-  ["Llamadas de seguimiento", "Videollamadas periódicas para revisar el proceso y planificar el bloque."],
-  ["Ajustes constantes", "Si te estancás o cambia tu vida, el plan cambia contigo. Sin esperar al mes siguiente."],
+  ["Plan 100% personalizado", ""],
+  ["Check-in semanal", ""],
+  ["Corrección de técnica", ""],
+  ["Chat directo conmigo", ""],
+  ["Llamadas de seguimiento", ""],
+  ["Ajustes constantes", ""],
 ];
 
-const STEPS = ["Aplicás con el formulario", "Agendás la llamada de evaluación", "Si hay match, arrancamos con tu plan en 72 h"];
+const STEPS = ["Aplicás con el formulario", "Agendás la llamada de evaluación", "Si hay match, arrancamos con tu plan"];
 
 export default function AsesoriaPage() {
   return (
@@ -27,7 +28,7 @@ export default function AsesoriaPage() {
         <Image src="/img/gym-con-alumno.webp" alt="Cristian entrenando a un alumno" fill priority sizes="100vw" className="-z-20 object-cover object-[50%_30%] opacity-50 grayscale" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/75 to-ink/30 md:bg-gradient-to-r md:from-ink md:via-ink/80 md:to-transparent" />
         <div className="container-x py-20">
-          <p className="text-sm font-bold uppercase tracking-[.35em] text-gold">Premium · Cupos limitados</p>
+          <p className="text-sm font-bold uppercase tracking-[.35em] text-gold">Asesoría Premium 1 a 1</p>
           <h1 className="mt-4 max-w-3xl text-5xl leading-[0.95] sm:text-7xl">
             No es una videollamada. <span className="text-outline">Es un acompañamiento.</span>
           </h1>
@@ -52,7 +53,7 @@ export default function AsesoriaPage() {
           {INCLUDES.map(([t, d]) => (
             <div key={t} className="rounded-2xl border border-line bg-surface p-6">
               <h3 className="text-xl text-white">{t}</h3>
-              <p className="mt-2 text-neutral-400">{d}</p>
+              {d ? <p className="mt-2 text-neutral-400">{d}</p> : <div className="mt-3"><Placeholder /></div>}
             </div>
           ))}
         </div>
