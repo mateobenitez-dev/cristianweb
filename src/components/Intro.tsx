@@ -2,6 +2,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { CGMark } from "./CGMark";
+import { LoopVideo } from "./LoopVideo";
 
 /**
  * Intro animada de la Home (concepto de la web de Juanse, adaptado a Cristian):
@@ -16,6 +17,7 @@ import { CGMark } from "./CGMark";
 // Loop de Cristian posando (vertical, sin audio). Si no carga, queda el poster / fondo negro con grano.
 const VIDEO = "/video/intro-loop.mp4";
 const POSTER = "/img/intro-poster.jpg";
+const FALLBACK = "/img/intro-loop.webp";
 const SEEN_KEY = "cg-intro-visto";
 const BEAT = 60 / 128;
 
@@ -29,7 +31,6 @@ function prepareDraw(el: SVGGeometryElement) {
 export function Intro() {
   const root = useRef<HTMLDivElement>(null);
   const [done, setDone] = useState(false);
-  const [videoOk, setVideoOk] = useState(true);
 
   useLayoutEffect(() => {
     const el = root.current;
@@ -72,12 +73,6 @@ export function Intro() {
     gsap.set(tagText, { opacity: 0, y: 24, clipPath: "inset(0 50% 0 50%)" });
     gsap.set(tagLines, { scaleX: 0, svgOrigin: "500 888" });
     gsap.set(logo, { autoAlpha: 1 });
-
-    const video = el.querySelector<HTMLVideoElement>("[data-video]");
-    const playVideo = () => { if (video && video.paused) { video.muted = true; video.play().catch(() => {}); } };
-    playVideo();
-    const watchdog = window.setInterval(playVideo, 700);
-    window.addEventListener("touchstart", playVideo, { passive: true });
 
     const ctx = gsap.context(() => {
       gsap.fromTo(bg, { opacity: 0, scale: 1.15 }, { opacity: 1, scale: 1.05, duration: 2.4 * k, ease: "power2.out" });
@@ -179,8 +174,6 @@ export function Intro() {
     el.addEventListener("click", onClick);
 
     return () => {
-      clearInterval(watchdog);
-      window.removeEventListener("touchstart", playVideo);
       ctx.revert();
       gsap.ticker.remove(tick);
       window.removeEventListener("load", onLoad);
@@ -196,10 +189,7 @@ export function Intro() {
       <div data-half className="intro__half bottom-0" />
 
       <div data-bg className="intro__bg">
-        {videoOk && (
-          <video data-video src={VIDEO} poster={POSTER} muted autoPlay loop playsInline preload="auto" tabIndex={-1}
-            disablePictureInPicture disableRemotePlayback onError={() => setVideoOk(false)} />
-        )}
+        <LoopVideo src={VIDEO} poster={POSTER} fallback={FALLBACK} />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(255,255,255,.08),transparent_55%)]" />
       </div>
       <div data-grain className="intro__grain" aria-hidden />

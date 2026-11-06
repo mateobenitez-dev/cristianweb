@@ -73,7 +73,7 @@ export default function AsesoriaPage() {
           </ol>
           </div>
           <div className="relative mx-auto aspect-[3/4] w-full max-w-[320px] overflow-hidden rounded-2xl border border-gold/40">
-            <LoopVideo src="/video/asesoria-polea.mp4" poster="/img/asesoria-polea-poster.jpg" className="absolute inset-0 h-full w-full object-cover" />
+            <LoopVideo src="/video/asesoria-polea.mp4" poster="/img/asesoria-polea-poster.jpg" fallback="/img/asesoria-polea-loop.webp" className="absolute inset-0 h-full w-full object-cover" />
           </div>
         </div>
       </section>

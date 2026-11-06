@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
       {/* Mismo loop que la intro: ya está en caché y la transición queda continua */}
-      <LoopVideo src="/video/intro-loop.mp4" poster="/img/intro-poster.jpg"
+      <LoopVideo src="/video/intro-loop.mp4" poster="/img/intro-poster.jpg" fallback="/img/intro-loop.webp"
         className="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_25%] opacity-70 grayscale md:left-auto md:w-[55%]" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/70 to-ink/20 md:bg-gradient-to-r md:from-ink md:via-ink/80 md:to-transparent" />
 

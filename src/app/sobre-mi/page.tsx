@@ -13,7 +13,7 @@ export default function SobreMiPage() {
     <>
       <section className="container-x grid items-center gap-12 py-16 md:grid-cols-2">
         <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
-          <LoopVideo src="/video/sobre-mi.mp4" poster="/img/sobre-mi-poster.jpg" className="absolute inset-0 h-full w-full object-cover" />
+          <LoopVideo src="/video/sobre-mi.mp4" poster="/img/sobre-mi-poster.jpg" fallback="/img/sobre-mi-loop.webp" className="absolute inset-0 h-full w-full object-cover" />
         </div>
         <div>
           <p className="text-sm font-bold uppercase tracking-[.3em] text-gold">Mi historia</p>
